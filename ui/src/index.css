@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink-950: #0a0a0f;
+  --color-ink-900: #111119;
+  --color-ink-850: #16161f;
+  --color-ink-800: #1d1d28;
+  --color-ink-700: #2a2a38;
+  --color-ink-600: #3a3a4c;
+  --color-accent: #6366f1;
+}
+
+html, body, #root { height: 100%; }
+body { background: var(--color-ink-950); }
+
+/* Consistent form controls without repeating a long class string. */
+@layer components {
+  .field {
+    @apply w-full rounded-lg bg-ink-850 border border-ink-700 px-3 py-2 text-sm
+           text-slate-100 placeholder-slate-500 outline-none transition
+           focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20;
+  }
+  .label {
+    @apply block text-xs font-medium uppercase tracking-wider text-slate-400 mb-1.5;
+  }
+  .card {
+    @apply rounded-xl border border-ink-700 bg-ink-900;
+  }
+  /* Tailwind v4 cannot @apply one component class inside another, so each
+     button variant spells out the shared base. */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2
+           text-sm font-medium transition disabled:opacity-40
+           disabled:cursor-not-allowed;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2
+           text-sm font-medium transition disabled:opacity-40
+           disabled:cursor-not-allowed bg-indigo-600 text-white
+           hover:bg-indigo-500;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2
+           text-sm font-medium transition disabled:opacity-40
+           disabled:cursor-not-allowed border border-ink-700 text-slate-300
+           hover:bg-ink-800;
+  }
+}

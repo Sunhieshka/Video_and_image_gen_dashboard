@@ -1,0 +1,19 @@
+# The Ark runtime ships as the `byteplussdkarkruntime` module inside this
+# distribution; there is no PyPI package by that name. The [ark] extra adds
+# cryptography, which the runtime's signing code needs.
+byteplus-python-sdk-v2[ark]>=3.0.44
+
+# Undeclared dependencies of that runtime. It imports both in its core client
+# modules, but the [ark] extra lists neither, so the import fails with
+# ModuleNotFoundError without them. sniffio used to arrive via anyio; anyio
+# 4.15 dropped it, so it has to be named here too.
+httpx>=0.27
+sniffio>=1.3
+
+# Verified against: byteplus-python-sdk-v2 3.0.61, httpx 0.28.1, sniffio 1.3.1
+# on Python 3.12.14.
+
+# Web UI backend (videogen.api). Not needed for the CLI.
+fastapi>=0.110
+uvicorn[standard]>=0.27
+python-multipart>=0.0.9
